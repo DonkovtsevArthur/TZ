@@ -19,37 +19,37 @@ const user = [
 //начало приложения
 const app = document.getElementById("app");
 
-//компанент спиннер
+//компoнент спиннер
 const spinner = `<div class="spiner"></div>`;
 
 //компонент формы авторизации
-function form(x) {
+function form(names) {
   app.innerHTML = `<form id="form" class="form" name="athu">
             <span>Авторизация</span>
-            <p><input id="login" type="text" value="${x ? x : "Логин"}"></p>
+            <p><input id="login" type="text" value="${names ? names : "Логин"}"></p>
             <p><input id="pass" type="password" placeholder="Пароль"></p>
             <input id="submit" type="button" class="bth" value="Вход">
         </form>`;
 }
 
 //компонент header
-function header(x) {
+function header(names) {
   app.innerHTML = `<div>
-  <h1>Привет ${x}
+  <h1>Привет ${names}
     </h1>
   <input id="exit" type="button" class="bth" value="Выйти">
   </div>
   <div class="logout"> <input id="logs" type="button" class="bth athu" value="Авторизация"></div>`;
 
-  const ex = document.getElementById("exit");
-  const logs = document.getElementById("logs");
-  ex.addEventListener("click", exT);
+  const exitElem = document.getElementById("exit");
+  const logsElem = document.getElementById("logs");
+  exitElem.addEventListener("click", exT);
+  logsElem.addEventListener("click", getLog);
 
   function exT() {
     sessionStorage.removeItem("key");
     router();
   }
-  logs.addEventListener("click", getLog);
   function getLog() {
     router(0);
   }
@@ -78,10 +78,10 @@ function router(ses) {
   }
   return false;
 }
-//получаем данные  с формы
+//получаем данные с формы
 function getForm() {
-  const sub = document.getElementById("submit");
-  sub.addEventListener("click", ser);
+  const subElem = document.getElementById("submit");
+  subElem.addEventListener("click", ser);
   function ser() {
     let login = document.getElementById("login");
     let pass = document.getElementById("pass");
@@ -103,7 +103,7 @@ function getForm() {
         }
       });
     } else {
-      alert("не верный логин или пароль");
+      alert("Неверный логин или пароль");
     }
   }
 }
